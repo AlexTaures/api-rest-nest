@@ -4,6 +4,7 @@ import { RegisterDto } from './dto/register.dto';
 import { AuthService } from './auth.service';
 import { Get, Request, UseGuards } from '@nestjs/common';
 import { AuthGuard } from './guard/auth.guard';
+import { User } from 'src/users/entities/user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -22,7 +23,8 @@ export class AuthController {
 
   @Get('profile')
   @UseGuards(AuthGuard)
-  profile(@Request() req) {
-    return 'profile';
+  profile(@Request() req: { user: User }) {
+    const user = req.user;
+    return { message: 'Profile data retrieved successfully', user_data: user };
   }
 }
