@@ -19,4 +19,21 @@ export class UsersService {
   async findOneByEmail(email: string) {
     return await this.usersRepository.findOneBy({ email });
   }
+
+  async findAll() {
+    return await this.usersRepository.find();
+  }
+
+  async findOne(id: number) {
+    return this.usersRepository.findOneBy({ id });
+  }
+
+  async update(id: number, updateUserDto: UpdateUserDto) {
+    const user = this.usersRepository.findOneBy({ id });
+    return user;
+  }
+
+  async remove(id: number){
+    return this.usersRepository.delete(id);
+  }
 }

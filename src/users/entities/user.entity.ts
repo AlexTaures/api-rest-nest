@@ -1,4 +1,4 @@
-import { Column, DeleteDateColumn, Entity } from 'typeorm';
+import { Column, UpdateDateColumn, Entity } from 'typeorm';
 
 @Entity()
 export class User {
@@ -14,9 +14,9 @@ export class User {
   @Column({ nullable: false })
   password: string;
 
-  @Column({ default: 'user' })
-  rol: string;
+  @Column({ default: true })
+  active: boolean;
 
-  @DeleteDateColumn()
-  deletedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
